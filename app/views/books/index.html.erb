@@ -2,6 +2,16 @@
 
 <h1>Books</h1>
 
+<%= link_to 'New Book', new_book_path %>
+
+<!-- 検索拡張機能 -->
+
+<p>蔵書検索</p>
+<%= form_tag books_path, method: :get do %>
+  <%= text_field_tag :title %>
+  <%= submit_tag 'Search', :name => nil %>
+<% end %>
+
 <table>
   <thead>
     <tr>
@@ -26,4 +36,3 @@
 
 <br>
 
-<%= link_to 'New Book', new_book_path %>
