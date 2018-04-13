@@ -3,8 +3,11 @@ class BooksController < ApplicationController
 
   # GET /books
   # GET /books.json
+
+  PER = 2
+
   def index
-    @books = Book.search(params[:title])
+    @books = Book.paginate(:page => params[:page], :per_page => 2).search(params[:title])
   end
 
   # GET /books/1
