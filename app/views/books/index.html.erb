@@ -32,6 +32,7 @@
         <% else %>
             <td><%= book.card.user.username %></td>
         <% end %>
+        <td><%= link_to 'borrow', "cards/#{book.card.id}/edit" %></td>
         <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

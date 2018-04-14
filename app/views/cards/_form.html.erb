@@ -13,18 +13,14 @@
 
   <div class="field">
     <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.collection_select :user_id, User.all, :id, :username %>
   </div>
 
   <div class="field">
     <%= form.label :book_id %>
-    <%= form.text_field :book_id %>
+    <%= p "#{@card.book.title}" %>
   </div>
 
-  <div class="field">
-    <%= form.label :return_day %>
-    <%= form.date_select :return_day %>
-  </div>
 
   <div class="actions">
     <%= form.submit %>
