@@ -18,7 +18,6 @@ class BooksController < ApplicationController
   # GET /books/new
   def new
     @book = Book.new
-    @book.build_card
   end
 
   # GET /books/1/edit
@@ -32,6 +31,8 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.save
+        @card = @book.create_card
+        @card.save
         format.html { redirect_to @book, notice: 'Book was successfully created.' }
         format.json { render :show, status: :created, location: @book }
       else

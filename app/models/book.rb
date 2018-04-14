@@ -8,4 +8,7 @@ class Book < ApplicationRecord
     end
   end
 
+  has_one :card
+  accepts_nested_attributes_for :card
+
 end
