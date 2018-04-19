@@ -4,10 +4,11 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
 
-  PER = 2
+  PER = 10
 
   def index
-    @books = Book.paginate(:page => params[:page], :per_page => 2).search(params[:title])
+    @books = Book.paginate(:page => params[:page], :per_page => PER).search(params[:title])
+    @cards = Card.all
   end
 
   # GET /books/1
@@ -17,6 +18,7 @@ class BooksController < ApplicationController
 
   # GET /books/new
   def new
+    logger.debug("in book's new")
     @book = Book.new
   end
 

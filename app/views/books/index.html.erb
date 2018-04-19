@@ -2,14 +2,14 @@
 
 <h1>Books</h1>
 
-<%= link_to 'New Book', new_book_path %>
+<%= link_to '本の登録', new_book_path %>
 
 <!-- 検索拡張機能 -->
 
 <p>蔵書検索</p>
 <%= form_tag books_path, method: :get do %>
   <%= text_field_tag :title %>
-  <%= submit_tag 'Search', :name => nil %>
+  <%= submit_tag '検索', :name => nil %>
 <% end %>
 
 <table>
@@ -18,7 +18,8 @@
       <th>タイトル</th>
       <th>ジャンル</th>
       <th>所在</th>
-      <th colspan="4"></th>
+      <th>貸出日</th>
+      <th colspan="5"></th>
     </tr>
   </thead>
 
@@ -27,13 +28,16 @@
       <tr>
         <td><%= book.title %></td>
         <td><%= book.genre %></td>
-        <% if book.card.user.nil? %>
+        <% if book.card.user_id.nil? %>
             <td>本棚</td>
+            <td>-</td>
+            <td><%= link_to '借りる', "cards/#{book.card.id}/edit" %></td>
         <% else %>
             <td><%= book.card.user.username %></td>
+            <td><%= book.card.return_day %></td>
+            <td><%= link_to '返す', "cards/#{book.card.id}/release" %></td>
         <% end %>
-        <td><%= link_to 'borrow', "cards/#{book.card.id}/edit" %></td>
-        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '登録解除', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

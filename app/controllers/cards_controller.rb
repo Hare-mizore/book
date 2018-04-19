@@ -19,6 +19,12 @@ class CardsController < ApplicationController
 
   # GET /cards/1/edit
   def edit
+    if @card.user_id == nil
+      @card.return_day = @card.updated_at
+    else
+      @card.return_day = nil
+    end
+    @card.save
   end
 
   # POST /cards
@@ -59,6 +65,12 @@ class CardsController < ApplicationController
       format.html { redirect_to cards_url, notice: 'Card was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def release
+    @card = Card.find(params[:id])
+    @card.user_id = nil 
+    @card.save
   end
 
   private
