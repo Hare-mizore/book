@@ -1,0 +1,15 @@
+<h1>Release</h1>
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <strong>Book:</strong>
+  <%= @card.book.title %>
+</p>
+
+<p>
+  <strong>Borrowed day:</strong>
+  <%= @card.return_day %>
+</p>
+
+<%= link_to 'Back', root_path %>
